@@ -1,7 +1,8 @@
+
 import { useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Card, CardContent } from "./components/ui/card";
+import { Button } from "./components/ui/button";
+import { Input } from "./components/ui/input";
 
 export default function TiltNation() {
   const [sessions, setSessions] = useState([]);
@@ -29,16 +30,14 @@ export default function TiltNation() {
   const handleRecaveKeyDown = (e, name) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      const value = e.target.value;
-      handleRecaveChange(name, value);
+      handleRecaveChange(name, e.target.value);
     }
   };
 
   const handleGainKeyDown = (e, name) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      const value = e.target.value;
-      handleGainChange(name, value);
+      handleGainChange(name, e.target.value);
     }
   };
 
@@ -46,7 +45,6 @@ export default function TiltNation() {
     const totalInvested = Object.fromEntries(
       players.map((p) => [p, buyIn + (recaves[p] ? recaves[p] * buyIn : 0)])
     );
-
     const profit = {};
     players.forEach((p) => {
       const gain = gains[p] || 0;
